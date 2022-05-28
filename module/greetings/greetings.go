@@ -13,7 +13,7 @@ func Hello(name string) (string, error) {
 	if name == "" {
 		return "", errors.New("empty name")
 	}
- 	// Create a message using a random format.
+	// Create a message using a random format.
 	message := fmt.Sprintf(randomFormat(), name)
 	// message := fmt.Sprintf(randomFormat())
 	return message, nil
@@ -24,7 +24,7 @@ func Hellos(names []string) (map[string]string, error) {
 	messages := make(map[string]string)
 	// Loop through the received slice of names, calling
 	// the Hello function to get a message for each name.
-	for _,name := range names {
+	for _, name := range names {
 		message, err := Hello(name)
 		if err != nil {
 			return nil, err
@@ -45,7 +45,7 @@ func init() {
 // message is selected at random.
 func randomFormat() string {
 	// A slice of message formats.
-	formats := []string {
+	formats := []string{
 		"Hi, %v. Welcome!",
 		"Great to see you, %v!",
 		"Hail, %v! Well met!",

@@ -12,20 +12,20 @@ import (
 var db *sql.DB
 
 type Album struct {
-	ID		int64
-	Title	string
-	Artist	string
-	Price	float32
+	ID     int64
+	Title  string
+	Artist string
+	Price  float32
 }
 
 func main() {
 	// Capture connection properties.
 	cfg := mysql.Config{
-		User: os.Getenv("DBUSER"),
-		Passwd: os.Getenv("DBPASS"),
-		Net: "tcp",
-		Addr: "127.0.0.1:3306",
-		DBName: "recordings",
+		User:                 os.Getenv("DBUSER"),
+		Passwd:               os.Getenv("DBPASS"),
+		Net:                  "tcp",
+		Addr:                 "127.0.0.1:3306",
+		DBName:               "recordings",
 		AllowNativePasswords: true,
 	}
 	// Get a database handle.
@@ -55,7 +55,7 @@ func main() {
 	fmt.Printf("Album found: %v\n", alb)
 
 	albID, err := addAlbum(Album{
-		Title: "The Modern Sound of Betty Carter",
+		Title:  "The Modern Sound of Betty Carter",
 		Artist: "Betty Carter",
 		Price:  49.99,
 	})
@@ -76,7 +76,7 @@ func albumsByArtist(name string) ([]Album, error) {
 	}
 	defer rows.Close()
 	// Loop through rows, using Scan to assign column data to struct fields.
-	for rows.Next(){
+	for rows.Next() {
 		var alb Album
 		if err := rows.Scan(&alb.ID, &alb.Title, &alb.Artist, &alb.Price); err != nil {
 			return nil, fmt.Errorf("albumsByArtist %q: %v", name, err)
